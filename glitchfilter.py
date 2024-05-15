@@ -99,6 +99,24 @@ def apply_filter_with_alpha(frame, points, filter_runtime):
         min_y = max(min_y, 0)
         max_x = min(max_x, frame.shape[1])
         max_y = min(max_y, frame.shape[0])
+        
+        # Introduce scaling factors for width and height
+        scale_factor_width = 2.2 # Scale width by 20%
+        scale_factor_height = 2  # Scale height by 10%
+        center_x = (min_x + max_x) / 2
+        center_y = (min_y + max_y) / 2
+        width = (max_x - min_x) * scale_factor_width
+        height = (max_y - min_y) * scale_factor_height
+        min_x = int(center_x - width / 2)
+        min_y = int(center_y - height / 2)
+        max_x = int(center_x + width / 2)
+        max_y = int(center_y + height / 2)
+        
+        # Ensure the new bounding box is within frame dimensions
+        min_x = max(min_x, 0)
+        min_y = max(min_y, 0)
+        max_x = min(max_x, frame.shape[1])
+        max_y = min(max_y, frame.shape[0])
 
         # Resize the filter image to the bounding box size
         h, w = max_y - min_y, max_x - min_x
@@ -111,6 +129,7 @@ def apply_filter_with_alpha(frame, points, filter_runtime):
             frame[min_y:max_y, min_x:max_x, c] = (alpha_s * filter_img[:, :, c] + alpha_l * frame[min_y:max_y, min_x:max_x, c])
     
     return frame
+
 
 
 # Load the filter (assuming a similar function already exists in the script)
