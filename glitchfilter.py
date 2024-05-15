@@ -72,8 +72,8 @@ def apply_filter_with_alpha(frame, points, filter_runtime):
         alpha_s = filter_img[:, :, 3] / 255.0
         alpha_l = 1.0 - alpha_s
 
-        for c in range(0, 3):
-            frame[min_y:max_y, min_x:max_x, c] = (alpha_s * filter_img[:, :, c] + alpha_l * frame[min_y:max_y, min_x:max_x, c])
+        # for c in range(0, 3):
+        #     frame[min_y:max_y, min_x:max_x, c] = alpha_l * frame[min_y:max_y, min_x:max_x, c] +(alpha_s * filter_img[:, :, c] )
     
     return frame
 
