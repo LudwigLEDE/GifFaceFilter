@@ -101,7 +101,7 @@ def apply_filter_with_alpha(frame, points, filter_runtime):
         max_y = min(max_y, frame.shape[0])
         
         # Introduce scaling factors for width and height
-        scale_factor_width = 2.2 # Scale width by 20%
+        scale_factor_width = 3 # Scale width by 20%
         scale_factor_height = 2  # Scale height by 10%
         center_x = (min_x + max_x) / 2
         center_y = (min_y + max_y) / 2
